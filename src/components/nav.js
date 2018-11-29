@@ -25,8 +25,6 @@ class Nav extends Component {
       padding: "0 8px"
     };
 
-    console.log("User Auth:", this.props.auth);
-
     return (
       <nav style={navStyle} className="blue darken-4">
         <div className="nav-wrapper">

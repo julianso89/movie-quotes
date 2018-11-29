@@ -2,7 +2,6 @@ import types from "./types";
 import axios from "axios";
 
 export function userSignIn() {
-  console.log("User Sign in Called");
   return {
     type: types.SIGN_IN
   };
