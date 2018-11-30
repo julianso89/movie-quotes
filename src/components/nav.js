@@ -1,22 +1,37 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { userSignIn, userSignOut } from "../actions";
+import { userSignOut } from "../actions";
 
 class Nav extends Component {
   renderLinks() {
-    const { auth, signIn, signOut } = this.props;
+    const { auth, signOut } = this.props;
     if (auth) {
       return (
-        <button onClick={signOut} className="yellow btn">
-          Log Out
-        </button>
+        <Fragment>
+          <li>
+            <Link to="/secret-list">Secret List</Link>
+          </li>
+          <li>
+            <Link to="/quotes">Quotes</Link>
+          </li>
+          <li>
+            <button onClick={signOut} className="yellow btn">
+              Log Out
+            </button>
+          </li>
+        </Fragment>
       );
     }
     return (
-      <button onClick={signIn} className="btn red">
-        Sign In
-      </button>
+      <Fragment>
+        <li>
+          <Link to="/sign-in">Sign In</Link>
+        </li>
+        <li>
+          <Link to="/sign-up">Sign up</Link>
+        </li>
+      </Fragment>
     );
   }
 
@@ -34,21 +49,15 @@ class Nav extends Component {
 
           <ul className="right">
             <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
               <Link to="/about">About</Link>
             </li>
             <li>
               <Link to="/public-list">Public List</Link>
             </li>
-            <li>
-              <Link to="/secret-list">Secret List</Link>
-            </li>
-            <li>
-              <Link to="/quotes">Quotes</Link>
-            </li>
-            <li> { this.renderLinks() } </li>
-            <li>
-              <Link to="/sign-up">Sign up</Link>
-            </li>
+            {this.renderLinks()}
           </ul>
         </div>
       </nav>
@@ -66,7 +75,6 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {
-    signIn: userSignIn,
     signOut: userSignOut
   }
 )(Nav);
