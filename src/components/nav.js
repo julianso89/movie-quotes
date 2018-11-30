@@ -66,7 +66,6 @@ class Nav extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("State:", state);
   return {
     auth: state.user.auth
   };
