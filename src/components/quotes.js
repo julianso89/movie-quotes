@@ -1,16 +1,32 @@
 import React, { Component } from "react";
-import auth from "../hoc/auth";
+import { connect } from "react-redux";
+import { getMovieQuote } from "../actions";
 
 class Quotes extends Component {
+  
+  componentDidMount(){
+    this.props.getMovieQuote();
+  }
+  
   render() {
-    
     return (
       <div>
         <h1 className="center">Movie Quotes</h1>
-        <h5>How you like them apples?</h5>
+        <h5>{this.props.quote}</h5>
       </div>
     );
   }
 }
 
-export default auth(Quotes);
+function mapStateToProps (state) {
+  return {
+    quote : state.quotes.movie
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {
+    getMovieQuote: getMovieQuote
+  }
+)(Quotes);

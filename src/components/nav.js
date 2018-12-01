@@ -43,7 +43,7 @@ class Nav extends Component {
     return (
       <nav style={navStyle} className="blue darken-4">
         <div className="nav-wrapper">
-          <Link to="/" className="brand-logo">
+          <Link to="/" className="brand-logo left">
             Movie Quotes
           </Link>
 
@@ -66,7 +66,6 @@ class Nav extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("State:", state);
   return {
     auth: state.user.auth
   };
